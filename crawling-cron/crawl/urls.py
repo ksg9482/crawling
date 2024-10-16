@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from schedule.views import CronJobStatusView
+from schedule.views import CronJobExecuteView, CronJobStatusView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('cron/', CronJobStatusView.as_view(), name='cron_status'),
+    path('cron/<str:site>', CronJobExecuteView.as_view(), name='cron_job_execute'),
 ]
